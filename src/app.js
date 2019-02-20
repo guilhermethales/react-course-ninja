@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const Title = () => {
+const App = () => {
   return (
     <div>
       <h1>Título da Página</h1>
@@ -10,4 +10,4 @@ const Title = () => {
   )
 }
 
-export default Title;
+export default App;
