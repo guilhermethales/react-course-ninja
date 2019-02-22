@@ -1,11 +1,12 @@
 'use strict';
 
 import React from 'react';
+import Title from './title';
 
 const App = () => {
   return (
     <div>
-      <h1>Título da Página</h1>
+      <Title name='Guilherme Thales' />
     </div>
   )
 }
