@@ -3,12 +3,14 @@
 import React from 'react';
 import Title from './title';
 
-const App = () => {
-  return (
-    <div>
-      <Title name={ { firstname: 'Guilherme Thales', lastname: 'Virgílio' } }/>
-    </div>
-  )
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Title name={ { firstname: 'Guilherme Thales', lastname: 'Virgílio' } }/>
+      </div>
+    )
+  }
 }
 
 export default App;
