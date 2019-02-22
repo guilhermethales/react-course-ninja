@@ -3,6 +3,11 @@
 import React from 'react';
 
 const Title = React.createClass({
+  getDefaultProps: function() {
+    return {
+      name: 'Desconhecido'
+    }
+  },
   render: function() {
     return (
       <div>

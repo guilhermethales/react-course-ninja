@@ -6,7 +6,7 @@ import Title from './title';
 const App = () => {
   return (
     <div>
-      <Title name='Guilherme Thales' />
+      <Title />
     </div>
   )
 }
