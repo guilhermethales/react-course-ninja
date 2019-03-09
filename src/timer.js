@@ -6,9 +6,13 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: 0
+      time: props.time
     }
     this.timer;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', this.props, nextProps);
   }
 
   componentDidMount() {
