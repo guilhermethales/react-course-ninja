@@ -7,34 +7,22 @@ class App extends Component {
     super(props);
 
     this.state = {
-      value: 'Valor inicial',
-      checked: true
+      value: '3',
     }
   }
   render() {
     return (
       <div>
         <form>
-          <input type="text" value={ this.state.value } onChange={(e) => {
-            this.setState({
-              value: e.target.value
-            })
-          }} />
-
-          <label>
-            <input type="checkbox" checked={ this.state.checked } onChange={ () => {
+          <select value={ this.state.value } onChange={ (e) => {
               this.setState({
-                checked: !this.state.checked
+                value: e.target.value
               })
-            } } />
-            Checkbox
-          </label>
-
-          <label>
-            <input type="radio" name="rd" value="1" /> Radio 1
-            <input type="radio" name="rd" value="2" /> Radio 2
-            
-          </label>
+            } }>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+            <option value="3">Opção 3</option>
+          </select>
         </form>
       </div>
     )
