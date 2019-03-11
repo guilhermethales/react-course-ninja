@@ -1,13 +1,26 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Button from './button';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 'Valor inicial'
+    }
+  }
   render() {
     return (
       <div>
-        <Button handleClick={() => console.log('clicou')}>Clique em mim</Button>
+        <form>
+          <input type="text" value={ this.state.value } onChange={(e) => {
+            console.log(e);
+            this.setState({
+              value: e.target.value
+            })
+          }} />
+        </form>
       </div>
     )
   }
