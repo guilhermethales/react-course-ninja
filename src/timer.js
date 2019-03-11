@@ -11,8 +11,21 @@ class Timer extends Component {
     this.timer;
   }
 
+  componentDidMount() {
+    console.log('componentDidMount timer');
+  }
+
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', this.props, nextProps);
+    console.log('componentWillReceiveProps timer', this.props, nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log('shouldComponentUpdate timer', this.state, nextState);
+    return this.props.time !== nextProps.time;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('componentWillUpdate timer', this.props, nextProps);
   }
 
   componentDidMount() {
@@ -24,11 +37,12 @@ class Timer extends Component {
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
+    console.log('componentWillUnmount timer');
     clearInterval(this.timer);
   }
 
   render() {
+    console.log('render timer');
     return (
       <div>
         Timer: { this.state.time }
