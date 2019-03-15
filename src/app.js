@@ -7,19 +7,30 @@ class App extends Component {
     super(props);
 
     this.state = {
-      value: 'valor inicial',
+      checked: false,
+      showContent: false
     }
   }
   render() {
     return (
       <div>
-        <form>
-          <textarea value={ this.state.value } onChange={ (e) => {
-            this.setState({
-              value: e.target.value
-            })
-          } } cols="30" rows="10" />
-        </form>
+        <label>
+          <input 
+            type="checkbox"
+            checked={ this.state.checked }
+            onChange={ () => {
+              this.setState({
+                checked: !this.state.checked
+              }, () => {
+                this.setState({
+                  showContent: this.state.checked
+                })
+              })
+            } } />
+          Mostrar mais
+        </label>
+
+        { this.state.showContent && <div>Conteúdo oculto - Aprendendo que setState é async.</div> }
       </div>
     )
   }
