@@ -2,29 +2,60 @@
 
 import React, { Component } from 'react';
 import AppContent from './components/app-content';
+import ajax from '@fdaciuk/ajax';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userinfo: {
-        username: 'Guilherme Thales',
-        photo: 'https://avatars2.githubusercontent.com/u/15384483?v=4',
-        login: 'guilhermethales',
-        repos: 40,
-        followers: 6,
-        following: 14,
-      },
-      repos: [
-        { name: 'comdominio', link: 'https://github.com/guilhermethales/comdominio' },
-        { name: 'curso-reactjs-ninja', link: 'https://github.com/guilhermethales/curso-reactjs-ninja' }
-      ],
-      starred: [
-        { link: 'https://github.com/orgs/smart-campus-newton/teams/smart-campus-team', name: 'smart-campus-team' },
-        { link: 'https://github.com/RafaelAugustoS/Clone-Uber-EATS', name: 'Clone-Uber-EATS' },
-      ],
+      userinfo: null,
+      repos: [],
+      starred: [],
+      showRepos: false,
+      showStarred: false,
     }
+  }
+
+  getUser = (e) => {
+    const value = e.target.value;
+    const keyCode = e.which || e.keyCode;
+    const ENTER = 13;
+    if (keyCode === ENTER) {
+      ajax().get(`https://api.github.com/users/${value}`)
+      .then((data) => {
+        this.setUserInfo(data);
+      });
+    }
+  }
+
+  getRepos(type) {
+    return () => {
+      ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/${type}`)
+      .then((data) => {
+        this.setState({
+          [type]: data.map(repo => ({
+              id: repo.id,
+              name: repo.name,
+              link: repo.html_url,
+            })
+          )
+        });
+      });
+    }
+  }
+
+  setUserInfo = (data) => {
+    this.setState({
+      userinfo: {
+        photo: data.avatar_url,
+        login: data.login,
+        username: data.name || '',
+        repos: data.public_repos,
+        followers: data.followers,
+        following: data.following,
+      }
+    })
   }
 
   render() {
@@ -32,6 +63,9 @@ class App extends Component {
       userinfo={ this.state.userinfo }
       repos={ this.state.repos }
       starred={ this.state.starred }
+      getUser ={ this.getUser }
+      getRepos ={ this.getRepos('repos') }
+      getStarred ={ this.getRepos('starred') }
     />
   }
 }
