@@ -1,31 +1,37 @@
 'use strict';
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Search from './search';
 import UserInfo from './user-info';
 import Actions from './actions';
 import Repos from './repos';
 
-const AppContent = (props) => (
+const AppContent = ({ userinfo, repos, starred }) => (
   <div className="app">
     <Search />
-    <UserInfo />
-    <Actions />
-    <Repos 
-      className="repos" 
-      title="Repositórios" 
-      repos={[
-        { name: 'comdominio', link: 'https://github.com/guilhermethales/comdominio' },
-        { name: 'curso-reactjs-ninja', link: 'https://github.com/guilhermethales/curso-reactjs-ninja' }
-      ]} />
-    <Repos 
-      className="starred" 
-      title="Favoritos" 
-      repos={[
-        { link: 'https://github.com/orgs/smart-campus-newton/teams/smart-campus-team', name: 'smart-campus-team' },
-        { link: 'https://github.com/RafaelAugustoS/Clone-Uber-EATS', name: 'Clone-Uber-EATS' },
-      ]} />
+    { !!userinfo && <UserInfo userinfo={userinfo} /> }
+    { !!userinfo && <Actions /> }
+    
+    { !!repos.length && 
+      <Repos 
+        className="repos" 
+        title="Repositórios" 
+        repos={ repos } 
+      />
+    }
+    { !!starred.length &&
+      <Repos 
+        className="starred" 
+        title="Favoritos" 
+        repos={ starred } />
+    }
   </div>
 )
+
+AppContent.propTypes = {
+  userinfo: PropTypes.object.isRequired,
+  repos: PropTypes.array.isRequired,
+  starred: PropTypes.array.isRequired,
+}
 
 export default AppContent;
