@@ -17,21 +17,32 @@ class App extends Component {
     }
   }
 
+  getGithubApiUrl(username, type) {
+    const internalType = type ? `/${type}` : '';
+    return `https://api.github.com/users/${username}${internalType}`;
+  }
+
   getUser = (e) => {
     const value = e.target.value;
     const keyCode = e.which || e.keyCode;
     const ENTER = 13;
+    const target = e.target;
     if (keyCode === ENTER) {
-      ajax().get(`https://api.github.com/users/${value}`)
+      target.disabled = true;
+      ajax().get(this.getGithubApiUrl(value))
       .then((data) => {
-        this.setUserInfo(data);
+        this.setUserInfo(data, e);
+      })
+      .always(() => {
+        target.disabled = false;
       });
     }
   }
 
   getRepos(type) {
     return () => {
-      ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/${type}`)
+      const username = this.state.userinfo.login;
+      ajax().get(this.getGithubApiUrl(username, type))
       .then((data) => {
         this.setState({
           [type]: data.map(repo => ({
@@ -45,7 +56,7 @@ class App extends Component {
     }
   }
 
-  setUserInfo = (data) => {
+  setUserInfo = (data, e) => {
     this.setState({
       userinfo: {
         photo: data.avatar_url,
@@ -54,7 +65,7 @@ class App extends Component {
         repos: data.public_repos,
         followers: data.followers,
         following: data.following,
-      }
+      },
     })
   }
 
