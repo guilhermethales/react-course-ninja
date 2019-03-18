@@ -13,9 +13,8 @@ const AppContent = ({
   isFetching,
   getUser, 
   getRepos, 
-  getStarred, 
-  showRepos, 
-  showStarred }) => (
+  getStarred 
+}) => (
   <div className="app">
     <Search isDisabled={ isFetching } getUser={ getUser } />
     { isFetching && <div>Carregando...</div> }
@@ -42,6 +41,10 @@ AppContent.propTypes = {
   userinfo: PropTypes.object,
   repos: PropTypes.array.isRequired,
   starred: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  getUser: PropTypes.func.isRequired, 
+  getRepos: PropTypes.func.isRequired, 
+  getStarred: PropTypes.func.isRequired
 }
 
 export default AppContent;
