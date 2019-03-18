@@ -9,14 +9,16 @@ import Repos from './repos';
 const AppContent = ({ 
   userinfo, 
   repos, 
-  starred, 
+  starred,
+  isFetching,
   getUser, 
   getRepos, 
   getStarred, 
   showRepos, 
   showStarred }) => (
   <div className="app">
-    <Search getUser={ getUser } />
+    <Search isDisabled={ isFetching } getUser={ getUser } />
+    { isFetching && <div>Carregando...</div> }
     { !!userinfo && <UserInfo userinfo={userinfo} /> }
     { !!userinfo && <Actions getRepos={ getRepos } getStarred={ getStarred } /> }
     
