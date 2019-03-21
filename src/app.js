@@ -12,8 +12,6 @@ class App extends Component {
       userinfo: null,
       repos: [],
       starred: [],
-      showRepos: false,
-      showStarred: false,
       isFetching: false
     }
   }
@@ -72,10 +70,7 @@ class App extends Component {
 
   render() {
     return <AppContent 
-      userinfo={ this.state.userinfo }
-      repos={ this.state.repos }
-      starred={ this.state.starred }
-      isFetching={ this.state.isFetching }
+      { ...this.state }
       getUser ={ this.getUser }
       getRepos ={ this.getRepos('repos') }
       getStarred ={ this.getRepos('starred') }
