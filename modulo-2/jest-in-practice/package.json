@@ -1,8 +1,9 @@
 {
     "scripts": {
-        "test": "jest"
+        "test": "jest --coverage"
     },
     "devDependencies": {
+        "chai": "^4.2.0",
         "jest": "^15.1.1"
     }
 }
