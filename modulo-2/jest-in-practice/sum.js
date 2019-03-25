@@ -1,3 +1,3 @@
 'use strict';
 
-export default () => {};
+export default () => 3;
