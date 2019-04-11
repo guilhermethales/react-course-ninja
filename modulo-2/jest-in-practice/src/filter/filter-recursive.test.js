@@ -1,7 +1,7 @@
 'use strict';
 
 import { expect } from 'chai';
-import filter from './filter';
+import filter from './filter-recursive';
 
 it('filter should be a function', () => {
 	expect(filter).to.be.a('function');
