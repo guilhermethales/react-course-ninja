@@ -38,12 +38,6 @@ it('reduce([0, 1], (acc, item, index) => acc + index) should return 12', () => {
   expect(before).to.be.equal(after);
 });
 
-it('reduce([0, 1], (acc, item, index) => acc + index) should return 12', () => {
-  const before = reduce([0, 1], (acc, item, index) => acc + index);
-  const after = 1;
-  expect(before).to.be.equal(after);
-});
-
 it('reduce([1,2], (acc, item, index, array) => acc + array[index]) should return 3', () => {
   const before = reduce([1, 2], (acc, item, index, array) => acc + array[index], 0);
   const after = 3;
