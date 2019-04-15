@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+.repos-info li {
+  padding: 5px;
+}
+
+.repos li,
+.starred li {
+  padding: 10px 0;
+}
+
+.repos li + li,
+.starred li + li {
+  border-top: 1px solid #ccc;
+}
