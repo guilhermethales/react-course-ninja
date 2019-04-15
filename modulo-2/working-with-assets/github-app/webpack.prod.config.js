@@ -26,6 +26,7 @@ module.exports = validate({
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlPlugin({
       title: 'Github App',
+      inject: false,
       template: path.join(__dirname, 'src', 'html', 'template.html')
     })
   ],
