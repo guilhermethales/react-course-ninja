@@ -32,6 +32,8 @@
     "whacko": "^0.19.1"
   },
   "dependencies": {
+    "@babel/preset-env": "7.0.0",
+    "@babel/preset-react": "7.0.0",
     "@fdaciuk/ajax": "^3.0.4",
     "axios": "^0.18.0",
     "react": "^15.4.2",
