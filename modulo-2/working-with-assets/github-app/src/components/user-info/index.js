@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-import React, { PropTypes } from 'react';
-import './user-info.css';
+import React, { PropTypes } from 'react'
+import './user-info.css'
 
 const UserInfo = ({ userinfo }) => (
   <div>
@@ -33,4 +33,4 @@ UserInfo.propTypes = {
   })
 }
 
-export default UserInfo;
+export default UserInfo

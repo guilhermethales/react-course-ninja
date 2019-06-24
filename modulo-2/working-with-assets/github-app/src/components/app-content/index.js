@@ -1,12 +1,12 @@
-'use strict';
+'use strict'
 
-import React, { PropTypes } from 'react';
-import Search from 'components/search';
-import UserInfo from 'components/user-info';
-import Actions from 'components/actions';
-import Repos from 'components/repos';
+import React, { PropTypes } from 'react'
+import Search from 'components/search'
+import UserInfo from 'components/user-info'
+import Actions from 'components/actions'
+import Repos from 'components/repos'
 
-import './app.css';
+import './app.css'
 
 const AppContent = ({ 
   userinfo, 
@@ -49,4 +49,4 @@ AppContent.propTypes = {
   getStarred: PropTypes.func.isRequired
 }
 
-export default AppContent;
+export default AppContent

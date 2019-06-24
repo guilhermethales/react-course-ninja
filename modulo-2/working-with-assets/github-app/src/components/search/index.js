@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-import React, { Component, PropTypes } from 'react';
-import './search.css';
+import React, { Component, PropTypes } from 'react'
+import './search.css'
 
 const Search = ({ isDisabled, getUser }) => (
   <div>
@@ -20,4 +20,4 @@ Search.propTypes = {
   isDisabled: PropTypes.bool.isRequired
 }
 
-export default Search;
+export default Search
