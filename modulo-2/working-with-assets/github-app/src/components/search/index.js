@@ -5,12 +5,12 @@ import './search.css'
 
 const Search = ({ isDisabled, getUser }) => (
   <div>
-    <div className="search">
+    <div className='search'>
       <input
-        type="search" 
-        placeholder="Digite o nome do usuário no GitHub"
-        disabled={ isDisabled }
-        onKeyPress={ getUser } />
+        type='search'
+        placeholder='Digite o nome do usuário no GitHub'
+        disabled={isDisabled}
+        onKeyPress={getUser} />
     </div>
   </div>
 )

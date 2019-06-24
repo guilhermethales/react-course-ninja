@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import App from './app';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import App from './app'
 
-import './css/style.css';
+import './css/style.css'
 
 const renderApp = function (NextApp) {
   ReactDOM.render(
@@ -16,11 +16,11 @@ const renderApp = function (NextApp) {
   )
 }
 
-renderApp(App);
+renderApp(App)
 
-if(module.hot) {
+if (module.hot) {
   module.hot.accept('./app', () => {
-    const NextApp = require('./app').default;
-    renderApp(NextApp);
-  });
+    const NextApp = require('./app').default
+    renderApp(NextApp)
+  })
 }

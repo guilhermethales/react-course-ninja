@@ -1,8 +1,8 @@
 'use strict';
 
-import React, { Component } from 'react';
-import AppContent from './components/app-content';
-import ajax from '@fdaciuk/ajax';
+import React, {Component} from 'react'
+import AppContent from './components/app-content'
+import ajax from '@fdaciuk/ajax'
 
 class App extends Component {
   constructor(props) {
@@ -27,13 +27,13 @@ class App extends Component {
     const ENTER = 13;
     const target = e.target;
     if (keyCode === ENTER) {
-      this.setState({ isFetching: true });
+      this.setState({isFetching: true});
       ajax().get(this.getGithubApiUrl(value))
       .then((data) => {
         this.setUserInfo(data, e);
       })
       .always(() => {
-        this.setState({ isFetching: false });
+        this.setState({isFetching: false});
       });
     }
   }
@@ -70,10 +70,10 @@ class App extends Component {
 
   render() {
     return <AppContent 
-      { ...this.state }
-      getUser ={ this.getUser }
-      getRepos ={ this.getRepos('repos') }
-      getStarred ={ this.getRepos('starred') }
+      {...this.state}
+      getUser ={this.getUser}
+      getRepos ={this.getRepos('repos')}
+      getStarred ={this.getRepos('starred')}
     />
   }
 }
