@@ -1,14 +1,15 @@
 'use scrict'
 
 import React from 'react'
-import pagination from '../../utils/pagination/index'
+import pagination from 'utils/pagination/index'
+import Page from './page'
 
-const Pagination = ({total, activePage}) => (
+const Pagination = ({total, activePage, pageLink}) => (
   <div>
     <ul>
-      {pagination({total, activePage}).map((item, i) => (
+      {pagination({total, activePage}).map((page, i) => (
         <li key={i}>
-          <a>{item}</a>
+          <Page page={page} pageLink={pageLink.replace('%page%', page)} />
         </li>
       ))}
     </ul>
