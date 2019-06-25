@@ -1,17 +1,19 @@
 'use strict'
 
 import React, {PropTypes} from 'react'
+import Pagination from 'components/pagination'
 import './repos.css'
 
 const Repos = ({className, title, repos}) => (
   <div>
-    <div className={className}>
+    <div className={`repos-list ${className}`}>
       <h2>{title}</h2>
       <ul>
         {repos.map((repo, index) => (
           <li key={repo.id} ><a target='_blank' href={repo.link}>{repo.name}</a></li>
         ))}
       </ul>
+      <Pagination total={10} activePage={3} />
     </div>
   </div>
 )
