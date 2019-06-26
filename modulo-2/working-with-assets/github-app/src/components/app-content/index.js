@@ -15,7 +15,8 @@ const AppContent = ({
   isFetching,
   getUser,
   getRepos,
-  getStarred
+  getStarred,
+  handlePagination
 }) => (
   <div className='app'>
     <Search isDisabled={isFetching} getUser={getUser} />
@@ -29,13 +30,16 @@ const AppContent = ({
           className='repos'
           title='Repositórios'
           repos={repos}
+          handlePagination={(clicked) => handlePagination('repos', clicked)}
         />
       }
       {!!starred.length &&
         <Repos
           className='starred'
           title='Favoritos'
-          repos={starred} />
+          repos={starred}
+          handlePagination={(clicked) => handlePagination('starred', clicked)}
+        />
       }
     </div>
   </div>
@@ -48,7 +52,8 @@ AppContent.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   getUser: PropTypes.func.isRequired,
   getRepos: PropTypes.func.isRequired,
-  getStarred: PropTypes.func.isRequired
+  getStarred: PropTypes.func.isRequired,
+  handlePagination: PropTypes.func.isRequired
 }
 
 export default AppContent

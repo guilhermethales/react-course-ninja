@@ -16,9 +16,10 @@ class App extends Component {
     }
   }
 
-  getGithubApiUrl(username, type) {
+  getGithubApiUrl(username, type, page = 1) {
+    console.log('chegou')
     const internalType = type ? `/${type}` : '';
-    return `https://api.github.com/users/${username}${internalType}`;
+    return `https://api.github.com/users/${username}${internalType}?per_page=${page}`;
   }
 
   getUser = (e) => {
@@ -38,10 +39,10 @@ class App extends Component {
     }
   }
 
-  getRepos(type) {
+  getRepos(type, page) {
     return () => {
       const username = this.state.userinfo.login;
-      ajax().get(this.getGithubApiUrl(username, type))
+      ajax().get(this.getGithubApiUrl(username, type, page))
       .then((data) => {
         this.setState({
           [type]: data.map(repo => ({
@@ -71,9 +72,10 @@ class App extends Component {
   render() {
     return <AppContent 
       {...this.state}
-      getUser ={this.getUser}
-      getRepos ={this.getRepos('repos')}
-      getStarred ={this.getRepos('starred')}
+      getUser = {this.getUser}
+      getRepos = {this.getRepos('repos')}
+      getStarred = {this.getRepos('starred')}
+      handlePagination = {(type, page) => this.getRepos(type, page)()}
     />
   }
 }
