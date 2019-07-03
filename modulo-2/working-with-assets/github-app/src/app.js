@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 import React, {Component} from 'react'
 import AppContent from './components/app-content'
@@ -6,12 +6,15 @@ import ajax from '@fdaciuk/ajax'
 
 const initialReposState = {
   repos: [],
-  pagination: {}
+  pagination: {
+    total: 1,
+    activePage: 1
+  }
 }
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       userinfo: null,
@@ -19,20 +22,23 @@ class App extends Component {
       starred: initialReposState,
       isFetching: false
     }
+
+    this.perPage = 3
   }
 
   getGithubApiUrl(username, type, page = 1) {
-    const internalType = type ? `/${type}` : '';
-    return `https://api.github.com/users/${username}${internalType}?per_page=${page}`;
+    const internalUser = username ? `/${username}` : ''
+    const internalType = type ? `/${type}` : ''
+    return `https://api.github.com/users${internalUser}${internalType}?per_page=${this.perPage}&page=${page}`
   }
 
   getUser = (e) => {
-    const value = e.target.value;
-    const keyCode = e.which || e.keyCode;
-    const ENTER = 13;
-    const target = e.target;
+    const value = e.target.value
+    const keyCode = e.which || e.keyCode
+    const ENTER = 13
+    const target = e.target
     if (keyCode === ENTER) {
-      this.setState({isFetching: true});
+      this.setState({isFetching: true})
       ajax().get(this.getGithubApiUrl(value))
       .then((data) => {
         this.setState({
@@ -49,16 +55,18 @@ class App extends Component {
         })
       })
       .always(() => {
-        this.setState({isFetching: false});
-      });
+        this.setState({isFetching: false})
+      })
     }
   }
 
   getRepos(type, page) {
     return () => {
-      const username = this.state.userinfo.login;
+      const username = this.state.userinfo.login
       ajax().get(this.getGithubApiUrl(username, type, page))
-      .then((data) => {
+      .then((data, xhr) => {
+        const linkHeader = xhr.getResponseHeader('Link') || ''
+        const totalPagesMatch = linkHeader.match(/&page=(\d+)>; rel="last"/)
         this.setState({
           [type]: {
             repos: data.map(repo => ({
@@ -68,12 +76,12 @@ class App extends Component {
               })
             ),
             pagination: {
-              ...this.state[type].pagination,
+              total: totalPagesMatch ? +totalPagesMatch[1] : this.state[type].pagination.total,
               activePage: page
             }
           }
-        });
-      });
+        })
+      })
     }
   }
 
@@ -88,4 +96,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
