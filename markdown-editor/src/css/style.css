@@ -2,6 +2,9 @@
   box-sizing: border-box;
 }
 
+@import '~normalize.css';
+@import '~highlight.js/styles/dracula.css';
+
 html,
 body,
 body > div {
