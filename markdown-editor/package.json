@@ -57,7 +57,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "highlight.js": "9.10.0",
-    "marked": "0.3.6",
+    "marked": "4.0.10",
     "normalize.css": "^8.0.1",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
